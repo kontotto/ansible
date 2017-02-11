@@ -1,0 +1,18 @@
+---
+
+- name: Install samba
+  yum: name={{ item }} state=present
+  with_items:
+    - samba
+    - samba-client
+    - samba-common
+
+- name: Copy samba configuration
+  template: src=smb.conf dest=/etc/samba/smb.conf
+  notify: restart samba
+
+- name: create samba directory
+  file: path={{ samba_directory }} state=directory owner=nobody group=nobody mode=0777
+
+- name: insert firewalld rule for samba
+  firewalld: service=samba permanent=true state=enabled immediate=yes

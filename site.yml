@@ -1,0 +1,10 @@
+---
+- name: Setup Centos7 Minimal
+  hosts: centos7-minimal
+  remote_user: root
+
+  roles:
+    - common
+    - node
+    - samba
+    - vagrant

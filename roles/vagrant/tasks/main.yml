@@ -1,0 +1,13 @@
+---
+  
+  - name: install dkms
+    yum: name=dkms state=present
+
+  - name: copy the virtualbox repository definition
+    copy: src=virtualbox.repo dest=/etc/yum.repos.d/
+
+  - name: create the GPG key for virtualbox
+    copy: src=RPM-GPG-KEY-VIRTUALBOX dest=/etc/pki/rpm-gpg
+
+  - name: install virtualbox{{ virtualbox_version }}
+    yum: name=VirtualBox-{{ virtualbox_version }} state=present

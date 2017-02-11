@@ -1,0 +1,7 @@
+---
+
+# Samba settings
+samba_directory: /samba/share
+
+# Vagrant settings
+virtualbox_version: 5.0
